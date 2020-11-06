@@ -1,0 +1,16 @@
+/*
+ * for everything related to color (except effects)
+ */
+
+.login-blueBackground{
+  background-color: #3e00c4;
+}
+
+.login-greyBackground{
+  background-color: #ffffff;
+}
+
+
+.login-red{
+  color: #c25c5c;
+}
