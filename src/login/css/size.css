@@ -1,0 +1,43 @@
+/*
+ * For dimensions only
+ */
+
+.login-fullPageHeight{
+  height: 100vh;
+}
+
+.login-imageSize{
+  height: 200px;
+  width: 200px;
+}
+
+.login-fullScreen{
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  height: 100%; 
+  width: 100%;
+  overflow: auto;
+}
+
+.login-insidePadding{
+  padding: 20px;
+}
+
+.login-invalidCrentialsSize{
+  min-height: 25pt;
+}
+
+.login-fullWidth{
+  width: 100%;
+}
+
+@media only screen and (max-width: 1000px){
+  .login-paperSize{
+    width: 220px;
+  }
+
+  .login-columnSize{
+    width: 200px;
+  }
+}
