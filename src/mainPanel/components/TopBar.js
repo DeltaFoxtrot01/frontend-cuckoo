@@ -17,7 +17,7 @@ export default class TopBar extends Component {
                   Cuckoo COVID
                 </Typography>
               </Box>
-              <Button size='large' color="inherit">SCAN</Button>
+              <Button size='large' color="inherit" onClick={this.props.onClickScanner}>SCAN</Button>
             </Box>
           </Toolbar>
         </AppBar>
