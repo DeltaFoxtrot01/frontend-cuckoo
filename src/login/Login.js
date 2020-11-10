@@ -7,8 +7,11 @@ import "login/css/efects.css";
 import "login/css/fonts.css";
 import "login/css/position.css";
 import "login/css/size.css";
+import { LoginService } from 'tools/remoteServices/LoginService';
+import { User } from 'tools/models/User';
+import { withRouter } from 'react-router';
 
-export default class Login extends Component {
+class Login extends Component {
 
   constructor(props) {
     super(props)
@@ -45,8 +48,21 @@ export default class Login extends Component {
   }
 
   onClick = () => {
-    console.log(this.username," ",this.password);
-    //FIXME add http request
+    if(this.username === "" || this.password === ""){
+      this.setState({
+        invalidCrendetials: true
+      });
+    }
+    else{
+      LoginService.doLogin(new User({"username": this.username, 
+                                     "password": this.password}))
+      .then((response) => {
+        this.props.history.push("/panel");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
 
@@ -91,3 +107,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default withRouter(Login);

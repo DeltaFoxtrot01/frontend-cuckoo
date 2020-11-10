@@ -12,7 +12,7 @@ httpApi.defaults.baseURL = process.env.REACT_APP_ROOT_API;
 httpApi.defaults.timeout = 20000;
 //default headers
 httpApi.defaults.headers.post["Content-Type"] = 'application/json';
-httpApi.defaults.headers.common["Authorization"] = "";
+
 
 export class GeneralRemoteServices{
   

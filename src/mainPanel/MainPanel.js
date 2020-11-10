@@ -4,6 +4,7 @@ import SidePanel from 'mainPanel/components/SidePanel'
 import TopBar from 'mainPanel/components/TopBar'
 import { Dialog } from '@material-ui/core'
 import QRScanner from './components/QRScanner'
+import { LoginService } from 'tools/remoteServices/LoginService'
 
 export default class MainPanel extends Component {
   
@@ -14,6 +15,13 @@ export default class MainPanel extends Component {
        panelOpened: false,
        popupOpened: false
     }
+    LoginService.getUserInfo()
+    .then(response => {
+      console.log(response);
+    })
+    .catch(response => {
+      console.log(response);
+    })
   }
 
   openDrawer = () => {
