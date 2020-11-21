@@ -60,7 +60,7 @@ class Login extends Component {
         this.props.history.push("/panel");
       })
       .catch((error) => {
-        console.log(error);
+        
       });
     }
   }

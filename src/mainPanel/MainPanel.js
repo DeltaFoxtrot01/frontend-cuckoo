@@ -47,8 +47,11 @@ class MainPanel extends Component {
       this.setState({userInfo: response});
     })
     .catch(response => {
-      this.props.history.push('/');
     })
+  }
+
+  changeToHome(){
+    this.props.history.push("/");
   }
 
   render() {
@@ -58,7 +61,7 @@ class MainPanel extends Component {
                    onClickScanner={this.openPopup.bind(this)}/>
         <SidePanel onClose={this.closeDrawer.bind(this)}
                    open={this.state.panelOpened}
-                   userInfo={this.state.userInfo}/>
+                   userinfo={this.state.userInfo}/>
         <Dialog open={this.state.popupOpened} onClose={this.closePopup.bind(this)}>
           <QRScanner />
         </Dialog>

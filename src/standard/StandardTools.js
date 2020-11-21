@@ -9,6 +9,7 @@ import 'standard/css/layout.css';
 import Login from 'login/Login';
 import MainPanel from 'mainPanel/MainPanel';
 import { Route, Switch } from 'react-router';
+import { connect } from 'react-redux';
 
 
 /**
@@ -33,4 +34,21 @@ class StandardTools extends Component {
   }
 }
 
-export default StandardTools;
+
+/**
+  * Used to associate the redux state to a prop 
+  */
+ const mapStateToProps = (state) => {
+  return {
+  };
+};
+
+/**
+ * Used to associate methods to the props 
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (StandardTools);
