@@ -1,3 +1,8 @@
 /*
  * For borders, margins, paddings, etc
  */
+
+
+.mainPanel-userPanelMargin{
+  margin: 4%;
+}
