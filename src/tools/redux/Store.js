@@ -1,3 +1,4 @@
+import StandardReducer from "standard/reducer/StandardReducer";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
@@ -15,5 +16,6 @@ const normalMiddleware = (store) => (next) => (action) => {
 
 export default createStore(
   combineReducers({
+    standard: StandardReducer
   }), {}, applyMiddleware(normalMiddleware, thunk)
 );

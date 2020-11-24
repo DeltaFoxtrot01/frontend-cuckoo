@@ -6,13 +6,18 @@
  * THIS FILE IS ONLY FOR DEFAULT CONFIGURATIONS/METHODS
  */
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import {DefaultErrorHandler} from 'tools/DefaultHttpHandler';
 
 export const httpApi = axios.create();
 httpApi.defaults.baseURL = process.env.REACT_APP_ROOT_API;
 httpApi.defaults.timeout = 20000;
 //default headers
 httpApi.defaults.headers.post["Content-Type"] = 'application/json';
-httpApi.defaults.headers.common["Authorization"] = "";
+
+if(Cookies.get('token') !== undefined){
+  httpApi.defaults.headers.common["Authorization"] = "Bearer " + Cookies.get('token');
+}
 
 export class GeneralRemoteServices{
   
@@ -23,6 +28,7 @@ export class GeneralRemoteServices{
         resolve(response.data);
       })
       .catch(error => {
+        DefaultErrorHandler(error);
         reject(error);
       });
     });

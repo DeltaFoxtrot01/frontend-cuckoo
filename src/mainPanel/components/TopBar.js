@@ -10,14 +10,14 @@ export default class TopBar extends Component {
           <Toolbar>
             <Box display='flex' justifyContent="space-between" alignItems="center" flexDirection="row" flexGrow={1}>
               <Box display='flex' flexDirection='row' justifyContent="space-around" alignItems="center" >
-                <IconButton edge="start" color="inherit" aria-label="menu">
+                <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.props.onClick}>
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" className={{flexGrow: 1}}>
+                <Typography variant="h6">
                   Cuckoo COVID
                 </Typography>
               </Box>
-              <Button size='large' color="inherit">SCAN</Button>
+              <Button size='large' color="inherit" onClick={this.props.onClickScanner}>SCAN</Button>
             </Box>
           </Toolbar>
         </AppBar>

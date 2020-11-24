@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+<h2>Docker configuration </h2>
+
+In order to build the docker image you must execute:
+- docker build . --tag frontend-cuckoo
+
+In order to run the container you must execute:
+- docker run --network="host" --env REACT_APP_ROOT_API=< backend url > frontend-cuckoo:latest
+
+Where < backend url > is the endpoint of the backend server
