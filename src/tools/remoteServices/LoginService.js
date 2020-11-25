@@ -19,9 +19,9 @@ export class LoginService{
         DefaultHandler(response);
         resolve();
       })
-      .catch(error => {
+      .catch(err => {
         
-        reject(error);
+        reject(err);
       });
     });
   }
