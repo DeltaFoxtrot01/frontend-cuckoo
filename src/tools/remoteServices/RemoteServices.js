@@ -15,6 +15,8 @@ httpApi.defaults.timeout = 20000;
 //default headers
 httpApi.defaults.headers.post["Content-Type"] = 'application/json';
 
+console.log(httpApi.defaults.baseURL);
+
 if(Cookies.get('token') !== undefined){
   httpApi.defaults.headers.common["Authorization"] = "Bearer " + Cookies.get('token');
 }
