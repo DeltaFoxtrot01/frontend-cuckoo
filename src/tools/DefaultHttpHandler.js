@@ -9,6 +9,7 @@ export function DefaultHandler(response){
 }
 
 export function DefaultErrorHandler(error){
+  console.log(error.response.status);
   switch (error.response.status){
     case 403:
       setHome();
