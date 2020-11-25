@@ -16,13 +16,12 @@ export class LoginService{
     return new Promise((resolve,reject) => {
       httpApi.post(this.baseUrl + '/authenticate', user)
       .then(response => {
-        httpApi.defaults.headers.common["Authorization"] = "Bearer " + response.data;
-        Cookies.set('token',response.data);
+        DefaultHandler(response);
         resolve();
       })
-      .catch(error => {
-        DefaultErrorHandler(error);
-        reject(error);
+      .catch(err => {
+        
+        reject(err);
       });
     });
   }
