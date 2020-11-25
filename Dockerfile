@@ -1,11 +1,11 @@
 FROM node:latest
 
-
+ARG BACKEND_URL
 WORKDIR /app
 COPY . /app
 
 ENV PORT 3000
-ENV REACT_APP_ROOT_API=http://localhost:8080
+ENV REACT_APP_ROOT_API=${BACKEND_URL}
 EXPOSE 3000/tcp
 
 ENV NODE_OPTIONS=--max_old_space_size=8192
