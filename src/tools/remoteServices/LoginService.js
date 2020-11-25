@@ -20,7 +20,7 @@ export class LoginService{
         resolve();
       })
       .catch(error => {
-        DefaultErrorHandler(error);
+        
         reject(error);
       });
     });
