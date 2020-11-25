@@ -5,6 +5,7 @@ WORKDIR /app
 COPY . /app
 
 ENV PORT 3000
+ENV REACT_APP_ROOT_API=http://localhost:8080
 EXPOSE 3000/tcp
 
 ENV NODE_OPTIONS=--max_old_space_size=8192
