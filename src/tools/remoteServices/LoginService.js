@@ -47,7 +47,7 @@ export class LoginService{
    */
   static getUserInfo(){
     return new Promise((resolve,reject) => {
-      httpApi.get(this.baseUrl + '/userInfo')
+      httpApi.get(this.baseUrl + '/user-info')
       .then(response => {
         DefaultHandler(response);
         resolve(new User(response.data));
