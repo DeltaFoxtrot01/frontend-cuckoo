@@ -13,6 +13,7 @@ import "mainPanel/css/efects.css";
 import "mainPanel/css/fonts.css";
 import "mainPanel/css/size.css";
 import "mainPanel/css/layout.css";
+import { displayErrorMessage, displaySuccessMessage } from 'standard/reducer/StandardMethods'
 
 class MainPanel extends Component {
   
@@ -57,10 +58,12 @@ class MainPanel extends Component {
 
   onQrScan(result){
     console.log(result);
+    displaySuccessMessage("QR Code scanned with success");
     this.closePopup();
   }
 
   onQrError(error){
+    displayErrorMessage("Error occured reading QR code");
     console.log(error);
     this.closePopup();
   }

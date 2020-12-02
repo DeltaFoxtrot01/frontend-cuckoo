@@ -2,6 +2,7 @@ import { User } from 'tools/models/User';
 import {httpApi} from 'tools/remoteServices/RemoteServices';
 import Cookies from 'js-cookie';
 import {DefaultErrorHandler, DefaultHandler} from 'tools/DefaultHttpHandler';
+import { displayErrorMessage } from 'standard/reducer/StandardMethods';
 
 
 export class LoginService{
@@ -20,7 +21,12 @@ export class LoginService{
         resolve();
       })
       .catch(err => {
-        
+        console.log(err)
+        if(err.response === undefined){
+          displayErrorMessage("ERROR: an unexpected error occured")
+          console.log(err);
+          return ;
+        }
         reject(err);
       });
     });

@@ -1,4 +1,4 @@
-import {setHome} from "standard/reducer/StandardMethods.js"
+import {displayErrorMessage, setHome} from "standard/reducer/StandardMethods.js"
 import { httpApi } from "tools/remoteServices/RemoteServices";
 import Cookies from 'js-cookie';
 
@@ -9,7 +9,10 @@ export function DefaultHandler(response){
 }
 
 export function DefaultErrorHandler(error){
-  console.log(error.response.status);
+  if(error.response.status === undefined){
+    displayErrorMessage("ERROR: an unexpected error occured")
+    console.log(error);
+  }
   switch (error.response.status){
     case 403:
       setHome();
