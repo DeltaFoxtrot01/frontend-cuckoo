@@ -7,6 +7,15 @@
   margin: 4%;
 }
 
+.mainPanel-listMargin{
+  margin: 10px;
+}
+
+.mainPanel-listMarginSide{
+  margin: 0px 10px;
+}
+
+
 
 .mainPanel-qrPadding{
   padding: 20px;

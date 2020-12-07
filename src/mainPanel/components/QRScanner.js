@@ -24,9 +24,10 @@ export default class QRScanner extends Component {
                       mainPanel-qrPadding">
         <h1>Request the Patient for the QR</h1>
         <QrReader
-          delay={100}
+          delay={50}
           facingMode={"rear"}
           style={previewStyle}
+          
           onError={this.onError.bind(this)}
           onScan={this.onScan.bind(this)}
           />

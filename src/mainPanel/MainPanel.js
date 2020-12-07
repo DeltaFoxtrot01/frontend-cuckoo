@@ -14,6 +14,7 @@ import "mainPanel/css/fonts.css";
 import "mainPanel/css/size.css";
 import "mainPanel/css/layout.css";
 import { displayErrorMessage, displaySuccessMessage } from 'standard/reducer/StandardMethods'
+import PatientTable from './components/PatientTable'
 
 class MainPanel extends Component {
   
@@ -79,6 +80,7 @@ class MainPanel extends Component {
         <Dialog open={this.state.popupOpened} onClose={this.closePopup.bind(this)}>
           <QRScanner onScan={this.onQrScan.bind(this)} onError={this.onQrError.bind(this)} />
         </Dialog>
+        <PatientTable/>
       </>
     )
   }

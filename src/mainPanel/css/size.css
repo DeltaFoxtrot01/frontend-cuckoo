@@ -6,3 +6,7 @@
 .mainPanel-minSize{
   min-width: 300px;
 }
+
+.mainPanel-inputSize{
+  max-width: 60%;
+}
