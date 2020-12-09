@@ -1,4 +1,4 @@
-import { Button, Paper, TextField } from '@material-ui/core'
+import { Button, createMuiTheme, Paper, TextField, ThemeProvider } from '@material-ui/core'
 import React, { Component } from 'react'
 import logo from "images/cuckoo.jpg"
 import "login/css/borders.css";
@@ -54,7 +54,7 @@ class Login extends Component {
       });
     }
     else{
-      LoginService.doLogin(new User({"username": this.username, 
+      LoginService.doLogin(new User({"email": this.username, 
                                      "password": this.password}))
       .then((response) => {
         this.props.history.push("/panel");
@@ -69,6 +69,14 @@ class Login extends Component {
 
 
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          main: "#1C439A"
+        }
+      }
+    });
+
     return (
       <div className="login-center 
                       login-fullScreen 
@@ -96,12 +104,14 @@ class Login extends Component {
               login-centerVertical">*Invalid Credentials</div>
               : 
               <div className="login-invalidCrentialsSize"/>
-            }
-              <Button disabled={this.state.disabled} 
-                      onClick={this.onClick.bind(this)}
-                      color="primary" variant="contained">
-                Login
-              </Button>
+              }
+              <ThemeProvider theme={theme}>
+                <Button disabled={this.state.disabled} 
+                        onClick={this.onClick.bind(this)}
+                        color="primary" variant="contained">
+                  Login
+                </Button>
+              </ThemeProvider>
             </Paper>
           </div>
         </Paper>

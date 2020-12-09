@@ -2,6 +2,7 @@ import { User } from 'tools/models/User';
 import {httpApi} from 'tools/remoteServices/RemoteServices';
 import Cookies from 'js-cookie';
 import {DefaultErrorHandler, DefaultHandler} from 'tools/DefaultHttpHandler';
+import { displayErrorMessage, setHome } from 'standard/reducer/StandardMethods';
 
 
 export class LoginService{
@@ -20,7 +21,12 @@ export class LoginService{
         resolve();
       })
       .catch(err => {
-        
+        console.log(err)
+        if(err.response === undefined){
+          displayErrorMessage("ERROR: an unexpected error occured")
+          console.log(err);
+          return ;
+        }
         reject(err);
       });
     });
@@ -32,13 +38,10 @@ export class LoginService{
    */
   static doLogout(){
     return new Promise((resolve,reject) => {
-      if(Cookies.get('token') === undefined){
-        reject();
-      }
-      else{
-        Cookies.remove('token');
-        resolve();
-      }
+      Cookies.remove('token');
+      httpApi.defaults.headers.common["Authorization"] = "";
+      setHome();
+      resolve();
     });
   }
 
@@ -47,7 +50,7 @@ export class LoginService{
    */
   static getUserInfo(){
     return new Promise((resolve,reject) => {
-      httpApi.get(this.baseUrl + '/userInfo')
+      httpApi.get(this.baseUrl + '/user-info')
       .then(response => {
         DefaultHandler(response);
         resolve(new User(response.data));

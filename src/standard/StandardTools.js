@@ -10,6 +10,7 @@ import Login from 'login/Login';
 import MainPanel from 'mainPanel/MainPanel';
 import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
+import NotificationMessageManager from './components/NotificationMessageManager';
 
 
 /**
@@ -22,13 +23,13 @@ class StandardTools extends Component {
 
   render() {
     let currentPath = this.props.match.path;
-
     return (
       <>
         <Switch>
           <Route path={`${currentPath}`} exact component={Login}/>
           <Route path={`${currentPath}panel`} component={MainPanel}/>
         </Switch>
+        <NotificationMessageManager/>
       </>
     );
   }
