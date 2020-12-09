@@ -2,7 +2,7 @@ import { User } from 'tools/models/User';
 import {httpApi} from 'tools/remoteServices/RemoteServices';
 import Cookies from 'js-cookie';
 import {DefaultErrorHandler, DefaultHandler} from 'tools/DefaultHttpHandler';
-import { displayErrorMessage } from 'standard/reducer/StandardMethods';
+import { displayErrorMessage, setHome } from 'standard/reducer/StandardMethods';
 
 
 export class LoginService{
@@ -38,13 +38,10 @@ export class LoginService{
    */
   static doLogout(){
     return new Promise((resolve,reject) => {
-      if(Cookies.get('token') === undefined){
-        reject();
-      }
-      else{
-        Cookies.remove('token');
-        resolve();
-      }
+      Cookies.remove('token');
+      httpApi.defaults.headers.common["Authorization"] = "";
+      setHome();
+      resolve();
     });
   }
 
