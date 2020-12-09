@@ -3,7 +3,7 @@ import { httpApi } from "tools/remoteServices/RemoteServices";
 import Cookies from 'js-cookie';
 
 export function DefaultHandler(response){
-  let token = response.headers["token"];
+  let token = response.headers["authorization"];
   httpApi.defaults.headers.common["Authorization"] = token;
   Cookies.set('token',token.substring("Bearer ".length));
 }
