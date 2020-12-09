@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import SidePanel from 'mainPanel/components/SidePanel'
 import TopBar from 'mainPanel/components/TopBar'
 import { Dialog } from '@material-ui/core'
-import QRScanner from './components/QRScanner'
+import QRScanner from 'mainPanel/components/QRScanner'
 import { LoginService } from 'tools/remoteServices/LoginService'
 import { withRouter } from 'react-router'
 
@@ -14,7 +14,9 @@ import "mainPanel/css/fonts.css";
 import "mainPanel/css/size.css";
 import "mainPanel/css/layout.css";
 import { displayErrorMessage, displaySuccessMessage } from 'standard/reducer/StandardMethods'
-import PatientTable from './components/PatientTable'
+import PatientTable from 'mainPanel/components/PatientTable'
+import { HashService } from 'tools/remoteServices/HashService'
+import { Hash } from 'tools/models/Hash'
 
 class MainPanel extends Component {
   
@@ -24,7 +26,8 @@ class MainPanel extends Component {
     this.state = {
        panelOpened: false,
        popupOpened: false,
-       userInfo: null
+       userInfo: null,
+       patients: []
     }
   }
 
@@ -50,7 +53,8 @@ class MainPanel extends Component {
       this.setState({userInfo: response});
     })
     .catch(response => {
-    })
+    });
+    this.updateList();
   }
 
   changeToHome(){
@@ -58,15 +62,36 @@ class MainPanel extends Component {
   }
 
   onQrScan(result){
-    console.log(result);
-    displaySuccessMessage("QR Code scanned with success");
+    HashService.submitPatient(result)
+    .then(response => {
+      displaySuccessMessage("QR Code scanned with success");
+      this.updateList();
+    })
+    .catch(err => {
+      displayErrorMessage("Unable to submit Patient");
+    })
     this.closePopup();
   }
 
   onQrError(error){
     displayErrorMessage("Error occured reading QR code");
-    console.log(error);
     this.closePopup();
+  }
+
+
+  updateList(){
+    HashService.getPatients()
+    .then(response => {
+      let res = response.map((patient) => {
+        return new Hash(patient);
+      });
+      this.setState({
+        patients: res
+      });
+    })
+    .catch(err => {
+      displayErrorMessage("Unable to retrieve patients");
+    });
   }
 
   render() {
@@ -80,7 +105,7 @@ class MainPanel extends Component {
         <Dialog open={this.state.popupOpened} onClose={this.closePopup.bind(this)}>
           <QRScanner onScan={this.onQrScan.bind(this)} onError={this.onQrError.bind(this)} />
         </Dialog>
-        <PatientTable/>
+        <PatientTable patients={this.state.patients} onUpdate={this.updateList.bind(this)}/>
       </>
     )
   }

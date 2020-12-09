@@ -9,13 +9,16 @@ export function DefaultHandler(response){
 }
 
 export function DefaultErrorHandler(error){
-  if(error.response.status === undefined){
+  if(error.response === undefined || error.response.status === undefined){
     displayErrorMessage("ERROR: an unexpected error occured")
     console.log(error);
+    return ;
   }
   switch (error.response.status){
     case 403:
       setHome();
+      httpApi.defaults.headers.common["Authorization"] = "";
+      Cookies.remove('token');
       break;
     default:
   }

@@ -10,3 +10,7 @@
 .mainPanel-inputSize{
   max-width: 60%;
 }
+
+.mainPanel-fullSize{
+  width: 100%;
+}
