@@ -78,6 +78,15 @@ class MainPanel extends Component {
     this.closePopup();
   }
 
+  doLogout = () => {
+    LoginService.doLogout()
+    .then(response => {})
+    .catch(err => {
+      console.log(err)
+      displayErrorMessage("Unable to logout");
+    });
+  }
+
 
   updateList(){
     HashService.getPatients()
@@ -101,6 +110,7 @@ class MainPanel extends Component {
                    onClickScanner={this.openPopup.bind(this)}/>
         <SidePanel onClose={this.closeDrawer.bind(this)}
                    open={this.state.panelOpened}
+                   onClick={this.doLogout.bind(this)}
                    userinfo={this.state.userInfo}/>
         <Dialog open={this.state.popupOpened} onClose={this.closePopup.bind(this)}>
           <QRScanner onScan={this.onQrScan.bind(this)} onError={this.onQrError.bind(this)} />

@@ -11,6 +11,10 @@
   max-width: 60%;
 }
 
+.mainPanel-logoutWidth{
+  width: 85%;
+}
+
 .mainPanel-fullSize{
   width: 100%;
 }
