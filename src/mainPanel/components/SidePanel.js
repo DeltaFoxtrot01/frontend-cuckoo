@@ -8,7 +8,9 @@ export default class SidePanel extends Component {
     if(this.props.userinfo === null)
       return (<></>);
     return (
-      <Drawer anchor={"left"} {...this.props}>
+      <Drawer anchor={"left"} 
+              open={this.props.open}
+              onClose={this.props.onClose}>
         <div className="mainPanel-userPanelMargin
                         mainPanel-minSize">
           <h1>User Information</h1>
@@ -24,3 +26,7 @@ export default class SidePanel extends Component {
     )
   }
 }
+
+
+
+                   
