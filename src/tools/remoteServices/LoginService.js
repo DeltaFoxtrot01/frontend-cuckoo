@@ -15,6 +15,8 @@ export class LoginService{
    */
   static doLogin(user){
     return new Promise((resolve,reject) => {
+      Cookies.remove('token');
+      httpApi.defaults.headers.common["Authorization"] = "";
       httpApi.post(this.baseUrl + '/authenticate', user)
       .then(response => {
         DefaultHandler(response);
